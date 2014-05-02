@@ -1,0 +1,90 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/x-tag-imports/x-tag-deck.html">
+
+
+<polymer-element name="th-deck" noscript>
+  <template>
+    <x-deck id="mydeck" loop>
+        <content></content>
+    </x-deck>
+  </template>
+  <script>
+    Polymer('th-deck', {
+      ready: function() {
+        /*
+        var deck = this.$.deck;
+        console.log(deck);
+        var cards = this.shadowRoot.querySelectorAll("x-card");
+        console.log('cards');
+        console.log(cards);
+        for(var i=0; i<cards.length;i++) {
+            cards[i].addEventListener('click', function(){
+              console.log('click');
+                deck.nextCard();
+          });
+        }
+        */
+      },
+      domReady: function () {
+        console.log('domready');
+        var deck = this.$.mydeck;
+        console.log(deck);
+        console.log(deck.nextCard)
+        console.log(this);
+        console.log(this.children);
+        console.log(this.childNodes);
+        var children = this.children;
+        for(var i=0; i<children.length;i++) {
+            //check type of children
+            
+              console.log(children[i]);
+              console.log('children[i].children[0]');
+              console.log(children[i].impl.children[0]);
+              if(children[i].impl.children.length>0)
+              {
+                if(i==0) {  
+                  children[i].impl.children[0].setAttribute('selected','true');  
+                  //children[i].impl.children[0].setAttribute('show','true');  
+                }
+                children[i].impl.children[0].setAttribute('transition-direction','forward');  
+             //   children[i].impl.children[0].setAttribute('transition','show');  
+              }
+            
+            
+            children[i].addEventListener('click', function(){
+              console.log('click');
+              console.log(deck);
+              console.log(deck.nextCard);
+                deck.nextCard();
+                //deck.shuffle(this, 'next', 'forward');
+            });
+        }
+            
+        
+        /*
+                this.async(function () {
+                    // By this point this.parentNode is upgraded according to
+                    // http://www.polymer-project.org/resources/faq.html#zerochildren
+                    //this.parentNode.doFooWithChild(this);
+                });
+*/
+
+      }
+    });
+
+  </script>
+</polymer-element>
+
+<polymer-element name="th-card" noscript>
+  <template>
+      <x-card transition-type="slide-left"><content></content></x-card>
+  </template>
+  <script>
+    Polymer('th-card', {
+      ready: function() {
+        
+      }
+    });
+
+  </script>
+</polymer-element>

@@ -16,24 +16,49 @@
         <script src="bower_components/platform/platform.js"></script>
         <link rel="import" href="elements/list.html">
         <link rel="import" href="elements/greeting.html">
-        <link rel="import" href="elements/th-card.html">
+        <link rel="import" href="elements/th-deck.html">
     </head>
     <body unresolved>
 
         <div style="width: 200px; height: 300px;">
-            <th-card></th-card>
+            <th-deck>
+                <th-card>first card</th-card>
+                <th-card>second card</th-card>
+            </th-deck>
         </div>
 
-        <div class="hero-unit">
-          <polymer-greeting></polymer-greeting>
-          <p>You now have</p>
-          <polymer-list></polymer-list>
+<!--
+        <div style="width: 200px; height: 300px;">
+            <th-deck>
+                <x-card transition-type="slide-left" selected>first card</x-card>
+                <x-card transition-type="slide-left">second card</x-card>
+            </th-deck>
         </div>
+-->
+       
+        <div style="width: 200px; height: 300px;">
+            <x-deck>
+                <x-card transition-type="slide-left" selected>first card</x-card>
+                <x-card transition-type="slide-left">second card</x-card>
+            </x-deck>
+        </div>
+
+        <input type='button' id="next-btn" value="next">
         
 
       <script>
         document.addEventListener('WebComponentsReady', function() {
             // Perform some behaviour
+
+            var deck = document.querySelector('x-deck');
+            console.log('xx-deck');
+            console.log(deck);
+
+            var btn = document.querySelector('#next-btn');
+            btn.addEventListener('click', function() {
+                console.log('btn click');
+                deck.nextCard();
+            })
         });
       </script>
     </body>
