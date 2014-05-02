@@ -1,0 +1,30 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/x-tag-imports/x-tag-deck.html">
+
+
+<polymer-element name="th-card" noscript>
+  <template>
+    <x-deck id="deck" loop>
+         <x-card selected transition-type="slide-left">hellow</x-card>
+         <x-card transition-type="slide-left">bye</x-card>
+    </x-deck>
+  </template>
+  <script>
+    Polymer('th-card', {
+      ready: function() {
+        var deck = this.$.deck;
+        console.log(deck);
+	    var cards = this.shadowRoot.querySelectorAll("x-card");
+	    console.log('cards');
+	    console.log(cards);
+    	for(var i=0; i<cards.length;i++) {
+        	cards[i].addEventListener('click', function(){
+        		console.log('click');
+            	deck.nextCard();
+    		});
+    	}
+      }
+    });
+
+  </script>
+</polymer-element>
